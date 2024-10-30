@@ -34,9 +34,13 @@ fn process_line(line: &str, output_file: &mut File) -> io::Result<()> {
 
             if is_integer(value) {
                 writeln!(output_file, "int {} = {};", name, value)?;
-            } else if value.starts_with('"') {
+            }
+
+            else if value.starts_with('"') {
                 writeln!(output_file, "char {}[] = {};", name, value)?;
-            } else {
+            }
+
+            else {
                 writeln!(output_file, "int {} = {};", name, value)?;
             }
         }
