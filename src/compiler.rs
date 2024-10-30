@@ -32,9 +32,8 @@ fn process_line(line: &str, output_file: &mut File) -> io::Result<()> {
             let name = parts[0].trim();
             let value = parts[1].trim();
 
-            // 여기에서 var를 삭제하고 int로만 변경합니다.
             if is_integer(value) {
-                writeln!(output_file, "int {} = {};", name, value)?; // 'var'를 'int'로 수정
+                writeln!(output_file, "int {} = {};", name, value)?;
             } else if value.starts_with('"') {
                 writeln!(output_file, "char {}[] = {};", name, value)?;
             } else {
@@ -52,6 +51,7 @@ fn process_line(line: &str, output_file: &mut File) -> io::Result<()> {
 
     Ok(())
 }
+
 
 pub fn compile_wave_to_c(input_filename: &str, output_filename: &str) -> io::Result<()> {
     let input_file = File::open(input_filename)?;
